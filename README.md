@@ -7,7 +7,7 @@
 
 ## Description
 
-> ### Python-based tool for pinpointing a location solely from satelite imagery - without any other info (address, coordinates etc.) using the cv2 module
+> ### Python-based OSINT tool for pinpointing a location solely from satelite imagery - without any other info (address, coordinates etc.) using the cv2 module
 
 <br />
 
@@ -72,7 +72,8 @@ Best matches are then presented to the user for consideration.
 ## Notes
 
 - Satelite images scaling approx. at 1:10.000 and 1:20.000 seems to get most accurate results.
-- The database satelite images are retrieved from Google Maps
+- The database satelite images are retrieved from Google Maps.
+- Chrome browser is used.
 
 
 
