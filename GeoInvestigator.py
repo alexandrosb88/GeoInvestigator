@@ -1,8 +1,15 @@
 # GeoInvestigator
 
+# Copyright (c) 2024 alexandrosb88
+
 import cv2
 import numpy as np
 import os
+from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
+import time
+import GeoScrapper
 
 
 def load_screenshots(directory):
@@ -46,19 +53,30 @@ def match_location(input_screenshot, saved_screenshots):
 
     return matches
 
-# Load the image database
+
+# Call Geoscapper to define the broad region and populate the database
+north, south, east, west = GeoScrapper.define_region()
+coordinates = GeoScrapper.generate_coordinates(north, south, east, west)
+GeoScrapper.scrape_map(coordinates)
+
+
+# Load the database
 saved_screenshots_directory = input("Specify the path of the database folder: ")
 saved_screenshots = load_screenshots(saved_screenshots_directory)
+
 
 # Load the aerial image for analysis
 image_path = input("Specify the path of your satelite image: ")
 input_screenshot = cv2.imread(image_path)
 
+
 # Matching
 matches = match_location(input_screenshot, saved_screenshots)
 
-# Sort the matches - higher first
+
+# Sort the matches (higher first)
 sorted_matches = sorted(matches, key=lambda x: x[2], reverse=True)
+
 
 # Retrieve the top 5 potential matches
 for i in range (5):
@@ -66,6 +84,43 @@ for i in range (5):
     print ("Match no" + str(i + 1) + " Coordinates: " + filename + " -- Matching score: " + str(sorted_matches[i][2]))
     cv2.imshow("Match no" + str(i + 1) + " >> " + sorted_matches[i][0], sorted_matches[i][1])
 
-
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+
+
+# Ask for redirection
+print("\n")
+
+while True:
+
+    try:
+        user_selection = int(input("You can be redirected to the point of your choice by typing 1-5: "))
+    
+        if user_selection in [1, 2, 3, 4, 5]:
+            break
+        else:
+            print("Invalid input.")
+    except ValueError:
+        print("Invalid input.")
+
+
+    
+selection_filename = sorted_matches[user_selection - 1][0]
+lat = selection_filename[1:3]  + "." + selection_filename[3:8]
+long = selection_filename[10:12]  + "." + selection_filename[12:17]
+
+driver = webdriver.Chrome()
+driver.get("https://www.google.com/maps/@" + lat + "," + long +",1400m/data=!3m1!1e3?entry=ttu")
+time.sleep(5)
+
+try:
+        cookies = driver.find_element(By.XPATH, "//button[@jsname='tWT92d']")
+        cookies.click()
+        time.sleep(5)
+except NoSuchElementException:
+        pass
+
+
+
+
+
