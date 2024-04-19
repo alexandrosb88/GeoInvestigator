@@ -32,8 +32,13 @@ A match, then, is attempted between the user's aerial photo and the aforemention
 
 Firstly, the user defines the extreme points of the area to be searched. This is achieved by noting down the coordinates of the nothernmost, southernmost, easternmost and westernmost points.
 
+![coordinates](resource_files/set_coordinates.png)
 
-A rectangular area based on the above points will be processed. 
+<br />
+
+A rectangular area based on the above points will be processed:
+
+![map_draw](resource_files/sample_map_draw.gif)
 
 
 </details>
@@ -43,7 +48,9 @@ A rectangular area based on the above points will be processed.
 <summary>Creating the database</summary>
 <br />
 
-GeoScrapper, then, saves screenshots from individual magnified regions of the area in order to populate the database. This procedure might take a considerable amount of time depending on the area size.
+GeoScrapper, then, saves screenshots from individual magnified regions of the area in order to populate the database. This procedure might take a considerable amount of time depending on the area size:
+
+![geoscrapper](resource_files/geoscrapper.gif)
 
 </details>
 
