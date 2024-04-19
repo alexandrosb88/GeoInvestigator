@@ -30,7 +30,7 @@ A match, then, is attempted between the user's aerial photo and the aforemention
 <summary>Defining the search territory</summary>
 <br />
 
-Firstly, the user defines the extreme points of the area to be searched. This is achieved by noting down the coordinates of the nothernmost, southernmost, easternmost and westernmost points.
+Firstly, the user defines the extreme points of the broad area in which the search will be conducted. This is achieved by noting down the coordinates of the nothernmost, southernmost, easternmost and westernmost points.
 
 ![coordinates](resource_files/set_coordinates.png)
 
@@ -59,7 +59,9 @@ GeoScrapper, then, saves screenshots from individual magnified regions of the ar
 <summary>Upload your satelite image</summary>
 <br />
 
-Afterwards, the user is prompted to enter the path of the unknown location satelite photo.
+Afterwards, the user is prompted to enter the path of the satelite photo that intends to locate:
+
+![upload_image](resource_files/upload_image.png)
 
 </details>
 
@@ -70,8 +72,17 @@ Afterwards, the user is prompted to enter the path of the unknown location satel
 
 Finally, a comparison between the uploaded photo and the satelite photos of the database is performed.
 
-Best matches are then presented to the user for consideration.
+The top 5 matches are then presented to the user for consideration:
 
+![results](resource_files/results.png)
+
+The relative aerial images are presented as well:
+
+<br />
+
+![matches](resource_files/matches.gif)
+<br />
+<em>(on the left - potential matches / on the right - uploaded image)</em>
 
 </details>
 
